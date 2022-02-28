@@ -1,19 +1,21 @@
-//
-//  ContentView.swift
-//  calculationApp
-//
-//  Created by 西片健也 on 2022/02/28.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+    let arr = ["足し算","引き算\n(絶対値を答えてください)","掛け算","割り算"]
+    let symbols = ["+","-","×","÷"]
+    var body: some View{
+        NavigationView{
+            List{
+                ForEach(0...3,id:\.self){item in
+                    NavigationLink(destination: Plus(symbol:symbols[item])){
+                        Text(arr[item])
+                    }
+                }
+            }.navigationTitle("計算")
+        }
+        
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
